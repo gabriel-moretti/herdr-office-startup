@@ -11,3 +11,9 @@ export const propPath = (preset, id) => `${ASSET_ROOT}environment/${preset}/prop
 /** Single-image still for a character clip, e.g. still("nico", "north", "coding"). */
 export const stillPath = (character, direction, clip) =>
   `${ASSET_ROOT}characters/${character}/${direction}-${clip}-still.png`;
+
+export const STATUSES = ["working", "blocked", "waiting", "done", "idle", "unknown", "offline"];
+
+/** Single-colour status icon; svg() tints it with the theme's status colour. */
+export const statusIconPath = (status) =>
+  `mods/office-startup-world/icons/status-${STATUSES.includes(status) ? status : "unknown"}.svg`;

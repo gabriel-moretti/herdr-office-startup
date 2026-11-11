@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "generator": "scripts/assets/build_runtime.py",
+  "characterId": "lia",
+  "license": "CC-BY-4.0",
+  "status": "imported-unreviewed",
+  "productionApproved": false,
+  "source": "2026-11-11 designer batch, art/import",
+  "cell": [
+    48,
+    48
+  ],
+  "anchor": [
+    24,
+    40
+  ],
+  "frameSlots": 28,
+  "directionConvention": {
+    "north": "back",
+    "east": "right profile",
+    "south": "front",
+    "west": "left profile"
+  },
+  "portraits": [
+    "portraits/alert.png",
+    "portraits/focused.png",
+    "portraits/happy.png",
+    "portraits/neutral.png"
+  ],
+  "limitations": [
+    "partial clip set: only clips with staged frames are declared; the mod must fall back for the rest",
+    "see art/import/README.md for known camera, scale and proportion limits"
+  ],
+  "clips": [
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "north",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "north-walk-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/lia/walk/north/frame-00.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/north/frame-01.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/north/frame-02.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/north/frame-03.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/north/frame-04.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/north/frame-05.png",
+          "durationMs": 120
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "north-walk.webp",
+      "gif": "north-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "east",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "east-walk-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/lia/walk/east/frame-00.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/east/frame-01.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/east/frame-02.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/east/frame-03.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/east/frame-04.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/east/frame-05.png",
+          "durationMs": 120
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "east-walk.webp",
+      "gif": "east-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "south",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "south-walk-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/lia/walk/south/frame-00.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/south/frame-01.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/south/frame-02.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/south/frame-03.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/south/frame-04.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/south/frame-05.png",
+          "durationMs": 120
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "south-walk.webp",
+      "gif": "south-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "west",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "west-walk-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/lia/walk/west/frame-00.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/west/frame-01.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/west/frame-02.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/west/frame-03.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/west/frame-04.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/lia/walk/west/frame-05.png",
+          "durationMs": 120
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "west-walk.webp",
+      "gif": "west-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "north",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "still": "north-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/lia/stand-idle/north/frame-00.png",
+          "durationMs": 0
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "east",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "still": "east-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/lia/stand-idle/east/frame-00.png",
+          "durationMs": 0
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "south",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "still": "south-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/lia/stand-idle/south/frame-00.png",
+          "durationMs": 0
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "west",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "still": "west-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/lia/stand-idle/west/frame-00.png",
+          "durationMs": 0
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true
+    }
+  ]
+}

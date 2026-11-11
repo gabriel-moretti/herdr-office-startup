@@ -10,6 +10,47 @@ ROOT=Path(__file__).resolve().parents[2]
 ASSETS=ROOT/'assets'
 
 
+def validate_partial(cid):
+    """Validate a character that ships only the clips its manifest declares (no atlas, no fixed slot count)."""
+    base=ASSETS/'characters'/cid
+    manifest=json.loads((base/'manifest.json').read_text())
+    assert manifest['characterId']==cid and manifest['license']=='CC-BY-4.0'
+    assert manifest['cell']==[48,48] and manifest['anchor']==[24,40]
+    assert manifest['productionApproved'] is False
+    seen=set();slots=0
+    for clip in manifest['clips']:
+        key=(clip['id'],clip['direction']);assert key not in seen,key;seen.add(key)
+        count=clip['frameCount'];slots+=count
+        assert clip['direction'] in ('north','east','south','west')
+        assert clip['sourceState'] in ('working','blocked','done','idle','unknown')
+        assert len(clip['frames'])==len(clip['durationsMs'])==count
+        assert 'atlas' not in clip or (base/clip['atlas']).exists()
+        hashes=[]
+        for f in clip['frames']:
+            im=Image.open(ROOT/f['file']);assert im.mode=='RGBA' and im.size==(48,48)
+            alpha=set(im.getchannel('A').get_flattened_data());assert alpha<={0,255} and 255 in alpha
+            hashes.append(hashlib.sha256(im.tobytes()).hexdigest())
+        assert len(set(hashes))==clip['uniqueFrameCount']
+        still=Image.open(base/clip['still']);assert still.size==(48,48)
+        if count==1:
+            assert 'webp' not in clip and 'gif' not in clip and clip['playback']=='still'
+            continue
+        assert clip['playback']==('loop' if clip['loop'] else 'once')
+        for kind in ('gif','webp'):
+            im=Image.open(base/clip[kind]);assert im.n_frames==count,(cid,key,kind)
+            duration=0
+            for i in range(im.n_frames):
+                im.seek(i);im.load();assert im.size==(48,48)
+                duration+=im.info.get('duration',0)
+            expected=sum(clip['durationsMs'])
+            if kind=='gif':expected=sum((ms//10)*10 for ms in clip['durationsMs'])
+            assert duration==expected,(cid,key,kind,duration,expected)
+    assert slots==manifest['frameSlots']
+    for p in manifest.get('portraits',[]):
+        im=Image.open(base/p);assert im.mode=='RGBA' and im.size==(32,32),p
+    return len(manifest['clips']),slots,len(manifest.get('portraits',[]))
+
+
 def validate():
     manifest=json.loads((ASSETS/'characters/nico/manifest.json').read_text())
     base=ASSETS/'characters/nico'
@@ -66,6 +107,10 @@ def validate():
             'runtimeTested':False,'artProductionApproved':False}
     (ASSETS/'validation-report.json').write_text(json.dumps(report,indent=2)+'\n')
     print('PASS: 65 RGBA slots; 16 variants; 22 animations decode with valid durations; 48 tiles; 27 prop exports')
+    for d in sorted((ASSETS/'characters').iterdir()):
+        if d.name!='nico' and (d/'manifest.json').exists():
+            clips,slots,portraits=validate_partial(d.name)
+            print(f'PASS: {d.name} (partial): {clips} clips; {slots} RGBA slots; {portraits} portraits')
     print('Not a Herdr runtime test or production art approval.')
 
 

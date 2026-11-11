@@ -1,28 +1,53 @@
 // SPDX-License-Identifier: Apache-2.0
-// office-startup-world: PoC static scene. One station for the selected agent; click desk
-// or actor to focus its terminal. Renders only when host data or the panel size changes.
+// office-startup-world: one desk per agent of the current space. The seated clip follows
+// the agent's real status and plays natively; click desk or actor to focus its terminal.
+// Renders only when host data or the panel size changes.
 import { View, div } from "gpui-kit";
 import { v_flex } from "gpui-base";
 import { agents, focused, props, run, theme } from "herdr";
 import { computeLayout } from "./layout.js";
 import { renderScene } from "./scene.js";
 import { selectAgent } from "./select.js";
+import { assignSlots } from "./slots.js";
+import { characterForSlot } from "./cast.js";
 
-// Integer sprite scale. Stays 1 until the milestone 01 spike shows how image() scales.
-const SCALE = 1;
+// Integer sprite scale. image() smooths and the app zoom applies; 2 keeps the 48 px cast readable
+// in a 360 px panel (one desk per row). Revisit once art is pre-scaled.
+const SCALE = 2;
 const PRESET = "nordic-day";
+const MAX_DESKS = 8;
 
 export default class OfficeWorld extends View {
   init() {
     this.width = 360;
+    this.slots = new Map();
+  }
+
+  // An `address` prop pins one agent (testing); otherwise every agent of the focused space.
+  present() {
+    const all = agents();
+    const address = props()?.address;
+    if (address) {
+      const one = selectAgent({ address, focused: null, agents: all });
+      return one ? [one] : [];
+    }
+    const space = focused()?.space;
+    return space ? all.filter((a) => a.space === space) : all;
   }
 
   render(cx) {
     const t = theme();
-    const agent = selectAgent({ address: props()?.address, focused: focused(), agents: agents() });
-    // Tab names are often just "1"; the terminal title says what the agent is.
-    const actors = agent ? [{ address: agent.address, label: agent.title || agent.app || agent.address, character: "nico" }] : [];
-    const layout = computeLayout({ width: this.width, stations: actors.length, scale: SCALE });
+    const list = this.present();
+    this.slots = assignSlots(this.slots, list.map((a) => a.address), MAX_DESKS);
+    const actors = [];
+    for (const a of list) {
+      const slot = this.slots.get(a.address);
+      if (slot === undefined) continue;
+      // Terminal titles say what the agent is doing; tab names are often just "1".
+      actors[slot] = { address: a.address, status: a.status, label: a.title || a.app || a.address, character: characterForSlot(slot) };
+    }
+    const desks = this.slots.size ? Math.max(...this.slots.values()) + 1 : 0;
+    const layout = computeLayout({ width: this.width, stations: desks, scale: SCALE });
 
     return v_flex().id("root").size_full().bg(t.canvas).overflow_y_scrollbar()
       .on_size_change((size, cx) => {
@@ -36,6 +61,8 @@ export default class OfficeWorld extends View {
         theme: t,
         onFocus: (address) => run("pane.focus", { terminal: address }),
       }))
-      .when(!agent, (el) => el.child(div().p(8).text_size(11).text_color(t.muted).child("No agent in this space")));
+      .when(!desks, (el) => el.child(div().p(8).text_size(11).text_color(t.muted).child("No agent in this space")))
+      .when(list.length > MAX_DESKS, (el) => el.child(div().p(8).text_size(11).text_color(t.muted)
+        .child(`${list.length - MAX_DESKS} more agents not shown`)));
   }
 }

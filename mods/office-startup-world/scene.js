@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
-// Static office scene: draws a computed layout with native elements. No state, no timers.
-import { div, image } from "gpui-kit";
-import { propPath, stillPath } from "./paths.js";
+// Office scene: draws a computed layout with native elements. No state, no timers.
+import { div, image, svg } from "gpui-kit";
+import { propPath, statusIconPath } from "./paths.js";
+import { actorImage, clipFor } from "./cast.js";
 
 // Copied from the art pipeline's environment manifest; tests/world/scene-data.test.mjs keeps them in sync.
 export const PALETTES = {
@@ -12,9 +13,9 @@ export const PALETTES = {
 
 /**
  * @param {ReturnType<import("./layout.js").computeLayout>} layout
- * @param {{ preset: string, actors: { address: string, label: string, character: string }[],
+ * @param {{ preset: string, actors: ({ address: string, label: string, character: string, status?: string } | undefined)[],
  *           theme: Record<string, string>, onFocus: (address: string) => void }} opts
- *   actors[i] sits at layout.stations[i].
+ *   actors[i] sits at layout.stations[i]; a gap leaves that desk empty but furnished.
  */
 export function renderScene(layout, { preset, actors, theme, onFocus }) {
   const s = layout.scale;
@@ -31,9 +32,7 @@ export function renderScene(layout, { preset, actors, theme, onFocus }) {
   // Desk hit targets first, so clicks anywhere on a station land on its terminal.
   layout.stations.forEach((st, i) => {
     const a = actors[i];
-    if (!a) return;
-    scene.child(at(div().id(`desk-${a.address}`).cursor_pointer(), st.rect)
-      .on_click(() => onFocus(a.address)));
+    if (a) scene.child(at(div().id(`desk-${a.address}`).cursor_pointer(), st.rect).on_click(() => onFocus(a.address)));
     scene.child(prop("desk", st.desk)).child(prop("monitor", st.monitor)).child(prop("chair", st.chair));
   });
 
@@ -41,14 +40,21 @@ export function renderScene(layout, { preset, actors, theme, onFocus }) {
   const seated = layout.stations.map((st, i) => [st, actors[i]]).filter(([, a]) => a)
     .sort(([p], [q]) => p.feet.y - q.feet.y);
   for (const [st, a] of seated) {
-    scene.child(at(image(stillPath(a.character, "north", "coding")).id(`actor-${a.address}`).cursor_pointer(), st.actor)
+    // The path changes with the status, so the host swaps the native clip; no timers here.
+    const img = actorImage(a.character, clipFor(a.status));
+    scene.child(at(image(img.path).id(`actor-${a.address}`).cursor_pointer(), st.actor)
       .on_click(() => onFocus(a.address)));
   }
+  // Status is always text plus a shaped icon, never colour alone, and is drawn above everything.
   for (const [st, a] of seated) {
+    const status = a.status ?? "unknown";
+    const colour = theme[status] ?? theme.unknown ?? theme.foreground;
     scene.child(div().absolute().left(st.rect.x * s).top((st.rect.y + st.rect.h - 12) * s).w(st.rect.w * s)
       .flex().justify_center()
-      .child(div().px(4).rounded(3).bg(theme.popover ?? "#202936").text_color(theme.foreground ?? "#E8E4DA")
-        .text_size(10).truncate().child(a.label)));
+      .child(div().flex().items_center().gap(3).px(4).rounded(3).bg(theme.popover ?? "#202936")
+        .text_color(theme.foreground ?? "#E8E4DA").text_size(10)
+        .child(svg(statusIconPath(status)).w(10).h(10).text_color(colour))
+        .child(div().truncate().child(a.label))));
   }
   return scene;
 }

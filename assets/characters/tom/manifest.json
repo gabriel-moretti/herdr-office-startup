@@ -1,0 +1,588 @@
+{
+  "schemaVersion": 1,
+  "generator": "scripts/assets/build_runtime.py",
+  "characterId": "tom",
+  "license": "CC-BY-4.0",
+  "status": "imported-unreviewed",
+  "productionApproved": false,
+  "source": "2026-11-11 designer batch, art/import",
+  "cell": [
+    48,
+    48
+  ],
+  "anchor": [
+    24,
+    40
+  ],
+  "frameSlots": 48,
+  "directionConvention": {
+    "north": "back",
+    "east": "right profile",
+    "south": "front",
+    "west": "left profile"
+  },
+  "portraits": [
+    "portraits/alert.png",
+    "portraits/focused.png",
+    "portraits/happy.png",
+    "portraits/neutral.png"
+  ],
+  "limitations": [
+    "partial clip set: only clips with staged frames are declared; the mod must fall back for the rest",
+    "see art/import/README.md for known camera, scale and proportion limits"
+  ],
+  "clips": [
+    {
+      "id": "coding",
+      "sourceState": "working",
+      "direction": "north",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        125,
+        125,
+        125,
+        125,
+        125,
+        125
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "north-coding-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/coding/north/frame-00.png",
+          "durationMs": 125
+        },
+        {
+          "file": "art/import/characters/tom/coding/north/frame-01.png",
+          "durationMs": 125
+        },
+        {
+          "file": "art/import/characters/tom/coding/north/frame-02.png",
+          "durationMs": 125
+        },
+        {
+          "file": "art/import/characters/tom/coding/north/frame-03.png",
+          "durationMs": 125
+        },
+        {
+          "file": "art/import/characters/tom/coding/north/frame-04.png",
+          "durationMs": 125
+        },
+        {
+          "file": "art/import/characters/tom/coding/north/frame-05.png",
+          "durationMs": 125
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "north-coding.webp",
+      "gif": "north-coding.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "blocked",
+      "sourceState": "blocked",
+      "direction": "north",
+      "frameCount": 4,
+      "uniqueFrameCount": 3,
+      "durationsMs": [
+        200,
+        200,
+        200,
+        200
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "north-blocked-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/blocked/north/frame-00.png",
+          "durationMs": 200
+        },
+        {
+          "file": "art/import/characters/tom/blocked/north/frame-01.png",
+          "durationMs": 200
+        },
+        {
+          "file": "art/import/characters/tom/blocked/north/frame-02.png",
+          "durationMs": 200
+        },
+        {
+          "file": "art/import/characters/tom/blocked/north/frame-03.png",
+          "durationMs": 200
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "north-blocked.webp",
+      "gif": "north-blocked.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "done",
+      "sourceState": "done",
+      "direction": "north",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        150
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "north-done-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/done/north/frame-00.png",
+          "durationMs": 150
+        },
+        {
+          "file": "art/import/characters/tom/done/north/frame-01.png",
+          "durationMs": 150
+        },
+        {
+          "file": "art/import/characters/tom/done/north/frame-02.png",
+          "durationMs": 150
+        },
+        {
+          "file": "art/import/characters/tom/done/north/frame-03.png",
+          "durationMs": 150
+        },
+        {
+          "file": "art/import/characters/tom/done/north/frame-04.png",
+          "durationMs": 150
+        },
+        {
+          "file": "art/import/characters/tom/done/north/frame-05.png",
+          "durationMs": 150
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "north-done.webp",
+      "gif": "north-done.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "idle",
+      "sourceState": "idle",
+      "direction": "north",
+      "frameCount": 4,
+      "uniqueFrameCount": 2,
+      "durationsMs": [
+        300,
+        300,
+        300,
+        300
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "north-idle-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/idle/north/frame-00.png",
+          "durationMs": 300
+        },
+        {
+          "file": "art/import/characters/tom/idle/north/frame-01.png",
+          "durationMs": 300
+        },
+        {
+          "file": "art/import/characters/tom/idle/north/frame-02.png",
+          "durationMs": 300
+        },
+        {
+          "file": "art/import/characters/tom/idle/north/frame-03.png",
+          "durationMs": 300
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "north-idle.webp",
+      "gif": "north-idle.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "coffee-sip-seated",
+      "sourceState": "idle",
+      "direction": "north",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        250,
+        250
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "once",
+      "still": "north-coffee-sip-seated-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/coffee-sip-seated/north/frame-00.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-seated/north/frame-01.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-seated/north/frame-02.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-seated/north/frame-03.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-seated/north/frame-04.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-seated/north/frame-05.png",
+          "durationMs": 250
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "north-coffee-sip-seated.webp",
+      "gif": "north-coffee-sip-seated.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "coffee-sip-standing",
+      "sourceState": "idle",
+      "direction": "south",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        250,
+        250
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "once",
+      "still": "south-coffee-sip-standing-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/coffee-sip-standing/south/frame-00.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-standing/south/frame-01.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-standing/south/frame-02.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-standing/south/frame-03.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-standing/south/frame-04.png",
+          "durationMs": 250
+        },
+        {
+          "file": "art/import/characters/tom/coffee-sip-standing/south/frame-05.png",
+          "durationMs": 250
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "south-coffee-sip-standing.webp",
+      "gif": "south-coffee-sip-standing.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "east",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "east-walk-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/walk/east/frame-00.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/east/frame-01.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/east/frame-02.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/east/frame-03.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/east/frame-04.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/east/frame-05.png",
+          "durationMs": 120
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "east-walk.webp",
+      "gif": "east-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "south",
+      "frameCount": 6,
+      "uniqueFrameCount": 6,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "still": "south-walk-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/walk/south/frame-00.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/south/frame-01.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/south/frame-02.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/south/frame-03.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/south/frame-04.png",
+          "durationMs": 120
+        },
+        {
+          "file": "art/import/characters/tom/walk/south/frame-05.png",
+          "durationMs": 120
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true,
+      "webp": "south-walk.webp",
+      "gif": "south-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "north",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "still": "north-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/stand-idle/north/frame-00.png",
+          "durationMs": 0
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "east",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "still": "east-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/stand-idle/east/frame-00.png",
+          "durationMs": 0
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "south",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "still": "south-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/stand-idle/south/frame-00.png",
+          "durationMs": 0
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "west",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "still": "west-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/import/characters/tom/stand-idle/west/frame-00.png",
+          "durationMs": 0
+        }
+      ],
+      "status": "imported-unreviewed",
+      "manualCleanupRequired": true
+    }
+  ]
+}
