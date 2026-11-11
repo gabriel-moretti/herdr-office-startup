@@ -1,6 +1,6 @@
 # Staged imports
 
-Frames normalized by `scripts/assets/import_sheets.py` from designer sheets, kept here until a character's set is complete and reviewed. Nothing here is used by the build or the mod. When a character is complete, its folder moves to `art/characters/<id>/` and goes through `build_starter.py` and the validators like Nico.
+Frames normalized by `scripts/assets/import_sheets.py` from designer sheets, kept here until a character's set is complete and reviewed. `scripts/assets/build_runtime.py` turns them into runtime clips under `assets/characters/<id>/` (not production-approved). When a character is complete, its folder moves to `art/characters/<id>/` and goes through `build_starter.py` and the validators like Nico.
 
 ## 2026-11-11 batch (`art/generated/raw/`)
 
@@ -18,7 +18,7 @@ Known limits of this batch, all visible in the frames:
 - **Camera.** Standing and walking frames are RPG three-quarter views; Tom's desk sheet is a true overhead back view. Consistent within a pose, mixed across poses.
 - **Nico's headset** is drawn with teal ear cups everywhere, not black as WORLD-SPEC says.
 - **Scale** is non-integer (6–11×) and downscaled nearest-neighbour from images that never had a pixel grid, so outlines are uneven at 1×. Needs a human cleanup pass before `productionApproved`.
-- **Proportions.** New figures are slimmer than the starter Nico (about 15×32 standing, 20×20 seated, against 28×32). Do not mix starter and new frames in one character.
+- **Proportions.** New figures are slimmer than the starter Nico (about 15×32 standing, 20×20 seated, against 28×32). Mixing styles in one character is a stopgap: Nico currently sits with starter frames and stands up as the slimmer `nico-v2`, which shows as a size jump until the batch's Nico desk sheet is redone.
 
 ## How it was imported
 
