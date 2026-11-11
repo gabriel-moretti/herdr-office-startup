@@ -1,0 +1,147 @@
+{
+  "result": "PASS",
+  "character": "nico",
+  "sourceFrameSlots": 65,
+  "variants": 16,
+  "animatedVariants": 11,
+  "staticVariants": 5,
+  "tiles": 48,
+  "propTypes": 9,
+  "propExports": 27,
+  "encodedAnimations": [
+    {
+      "clip": "north-coding",
+      "format": "gif",
+      "encodedFrames": 6,
+      "durationMs": 720
+    },
+    {
+      "clip": "north-coding",
+      "format": "webp",
+      "encodedFrames": 6,
+      "durationMs": 750
+    },
+    {
+      "clip": "north-blocked",
+      "format": "gif",
+      "encodedFrames": 4,
+      "durationMs": 800
+    },
+    {
+      "clip": "north-blocked",
+      "format": "webp",
+      "encodedFrames": 4,
+      "durationMs": 800
+    },
+    {
+      "clip": "north-waiting",
+      "format": "gif",
+      "encodedFrames": 4,
+      "durationMs": 1000
+    },
+    {
+      "clip": "north-waiting",
+      "format": "webp",
+      "encodedFrames": 4,
+      "durationMs": 1000
+    },
+    {
+      "clip": "north-done",
+      "format": "gif",
+      "encodedFrames": 6,
+      "durationMs": 900
+    },
+    {
+      "clip": "north-done",
+      "format": "webp",
+      "encodedFrames": 6,
+      "durationMs": 900
+    },
+    {
+      "clip": "north-idle",
+      "format": "gif",
+      "encodedFrames": 3,
+      "durationMs": 1200
+    },
+    {
+      "clip": "north-idle",
+      "format": "webp",
+      "encodedFrames": 3,
+      "durationMs": 1200
+    },
+    {
+      "clip": "north-coffee-sip-seated",
+      "format": "gif",
+      "encodedFrames": 5,
+      "durationMs": 1500
+    },
+    {
+      "clip": "north-coffee-sip-seated",
+      "format": "webp",
+      "encodedFrames": 5,
+      "durationMs": 1500
+    },
+    {
+      "clip": "south-coffee-sip-standing",
+      "format": "gif",
+      "encodedFrames": 5,
+      "durationMs": 1500
+    },
+    {
+      "clip": "south-coffee-sip-standing",
+      "format": "webp",
+      "encodedFrames": 5,
+      "durationMs": 1500
+    },
+    {
+      "clip": "north-walk",
+      "format": "gif",
+      "encodedFrames": 6,
+      "durationMs": 720
+    },
+    {
+      "clip": "north-walk",
+      "format": "webp",
+      "encodedFrames": 6,
+      "durationMs": 720
+    },
+    {
+      "clip": "east-walk",
+      "format": "gif",
+      "encodedFrames": 6,
+      "durationMs": 720
+    },
+    {
+      "clip": "east-walk",
+      "format": "webp",
+      "encodedFrames": 6,
+      "durationMs": 720
+    },
+    {
+      "clip": "south-walk",
+      "format": "gif",
+      "encodedFrames": 6,
+      "durationMs": 720
+    },
+    {
+      "clip": "south-walk",
+      "format": "webp",
+      "encodedFrames": 6,
+      "durationMs": 720
+    },
+    {
+      "clip": "west-walk",
+      "format": "gif",
+      "encodedFrames": 6,
+      "durationMs": 720
+    },
+    {
+      "clip": "west-walk",
+      "format": "webp",
+      "encodedFrames": 6,
+      "durationMs": 720
+    }
+  ],
+  "runtimeTested": false,
+  "artProductionApproved": false
+}

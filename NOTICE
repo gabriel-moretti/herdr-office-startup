@@ -1,0 +1,27 @@
+herdr-office-startup
+Copyright 2026 Gabriel Moretti and contributors, to the extent copyright subsists.
+Original project code/tooling is licensed under Apache License 2.0.
+Original artwork is offered separately under CC BY 4.0 to the extent rights are held.
+AI-derived artwork has provenance and rights limitations described in art/PROVENANCE.md.
+
+This starter contains specifications, public-source research, concepts and original
+asset tooling. No upstream mod implementation has been incorporated yet.
+
+References and attribution obligations to preserve IF relevant code/art is imported:
+- Herdr Desktop, herdrdev/herdr-app: Apache-2.0; preserve applicable notices.
+- munza/herdr-mods: Copyright 2026 Tawsif Aqib, Apache-2.0; preserve applicable NOTICE,
+  including Herdr-derived Better Changes / Files and Branch PR icon/code credits.
+- cybertron288/herdr-mods: MIT with component-specific exceptions and transitive notices.
+  CI base: Copyright 2026 Douglas Cunha (MIT).
+  Filetree behavior: Copyright 2026 Kurt Buhler (MIT), only if used.
+  Material Icon Theme: Copyright 2025 Material Extensions (MIT), only if used.
+  yaml 2.8.1: Eemeli Aro (ISC), only if copied.
+  Herdr-derived Files/file-icons implementation: Apache-2.0.
+- bnhan2710/pixel-hq and Pond Agents: MIT portions; Herdr-derived portions retain Apache-2.0.
+- SaifHarding/herdr-pokemon-agents-plus: behavior research only; code MIT with
+  Apache-derived portions. NO Pokémon/SpriteCollab art/audio/scenery is bundled.
+
+This inventory is not a claim that all referenced components are included. When
+importing code, replace the conditional inventory with an exact path/commit record,
+retain copyright/permission text and ship relevant LICENSE/NOTICE files.
+NOTICE is informational and does not modify any license or imply endorsement.
