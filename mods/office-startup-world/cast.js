@@ -5,8 +5,8 @@ import { ASSET_ROOT } from "./paths.js";
 // Seated (north) clips each character ships today. Tom comes from the 2026-11-11 designer
 // batch; Nico is still the starter art until the designer's desk sheet is redone.
 export const CAST = {
-  tom: { clips: ["coding", "blocked", "done", "idle"] },
-  nico: { clips: ["coding", "blocked", "waiting", "done", "idle", "unknown"] },
+  tom: { clips: ["coding", "blocked", "done", "idle", "coffee-sip-seated"] },
+  nico: { clips: ["coding", "blocked", "waiting", "done", "idle", "unknown", "coffee-sip-seated"] },
 };
 export const SEATED_CAST = ["tom", "nico"];
 

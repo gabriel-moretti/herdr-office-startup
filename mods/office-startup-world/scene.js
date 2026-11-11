@@ -13,7 +13,7 @@ export const PALETTES = {
 
 /**
  * @param {ReturnType<import("./layout.js").computeLayout>} layout
- * @param {{ preset: string, actors: ({ address: string, label: string, character: string, status?: string } | undefined)[],
+ * @param {{ preset: string, actors: ({ address: string, label: string, character: string, status?: string, sipping?: boolean } | undefined)[],
  *           theme: Record<string, string>, onFocus: (address: string) => void }} opts
  *   actors[i] sits at layout.stations[i]; a gap leaves that desk empty but furnished.
  */
@@ -41,7 +41,9 @@ export function renderScene(layout, { preset, actors, theme, onFocus }) {
     .sort(([p], [q]) => p.feet.y - q.feet.y);
   for (const [st, a] of seated) {
     // The path changes with the status, so the host swaps the native clip; no timers here.
-    const img = actorImage(a.character, clipFor(a.status));
+    // A sip only ever overlays idle; any other status shows its own clip in this same render.
+    const clip = a.sipping && a.status === "idle" ? "coffee-sip-seated" : clipFor(a.status);
+    const img = actorImage(a.character, clip);
     scene.child(at(image(img.path).id(`actor-${a.address}`).cursor_pointer(), st.actor)
       .on_click(() => onFocus(a.address)));
   }

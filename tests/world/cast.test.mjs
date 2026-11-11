@@ -43,3 +43,11 @@ test("every seated character has an existing image for every status", () => {
 test("cast entries declare only clips they ship", () => {
   for (const [id, c] of Object.entries(CAST)) assert.ok(c.clips.length > 0, id);
 });
+
+test("every seated character ships the seated coffee sip as an animated clip", () => {
+  for (const id of SEATED_CAST) {
+    const img = actorImage(id, "coffee-sip-seated");
+    assert.equal(img.animated, true, id);
+    assert.ok(existsSync(join(root, img.path)), img.path);
+  }
+});
