@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { CAST, SEATED_CAST, characterForSlot, clipFor, actorImage } from "../../mods/office-startup-world/cast.js";
+import { CAST, SEATED_CAST, characterForSlot, clipFor, actorImage, canWander, standingImage } from "../../mods/office-startup-world/cast.js";
 
 const root = join(import.meta.dirname, "../..");
 
@@ -50,4 +50,17 @@ test("every seated character ships the seated coffee sip as an animated clip", (
     assert.equal(img.animated, true, id);
     assert.ok(existsSync(join(root, img.path)), img.path);
   }
+});
+
+test("only characters with full walk and stand art can wander, and all their images exist", () => {
+  assert.equal(canWander("nico"), true);
+  assert.equal(canWander("tom"), false); // no north/west walk yet
+  for (const direction of ["north", "east", "south", "west"]) {
+    for (const clip of ["walk", "stand-idle"]) {
+      const img = standingImage("nico", { direction, clip });
+      assert.ok(existsSync(join(root, img)), img);
+    }
+  }
+  assert.match(standingImage("nico", { direction: "south", clip: "coffee-sip-standing" }), /south-coffee-sip-standing\.webp$/);
+  assert.ok(existsSync(join(root, standingImage("nico", { direction: "south", clip: "coffee-sip-standing" }))));
 });

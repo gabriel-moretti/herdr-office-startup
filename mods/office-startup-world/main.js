@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // office-startup-world: one desk per agent of the current space. The seated clip follows
-// the agent's real status and plays natively; idle agents take a coffee sip now and then.
+// the agent's real status and plays natively; idle agents take a coffee sip now and then,
+// and after more than five minutes idle, characters with walk art take a walk.
 // Click desk or actor to focus its terminal. Renders on host data, panel size, or a sip
 // starting/ending.
 import { View, div } from "gpui-kit";
@@ -10,8 +11,9 @@ import { computeLayout } from "./layout.js";
 import { renderScene } from "./scene.js";
 import { selectAgent } from "./select.js";
 import { assignSlots } from "./slots.js";
-import { characterForSlot } from "./cast.js";
+import { characterForSlot, canWander } from "./cast.js";
 import { stepCoffee } from "./coffee.js";
+import { stepWander, poseOf, nextEventAt, visibleKey } from "./wander.js";
 
 // Integer sprite scale. image() smooths and the app zoom applies; 2 keeps the 48 px cast readable
 // in a 360 px panel (one desk per row). Revisit once art is pre-scaled.
@@ -24,24 +26,57 @@ export default class OfficeWorld extends View {
     this.width = 360;
     this.slots = new Map();
     this.coffee = new Map();
-    // Deadlines only: redraw when a sip starts or ends, never per frame (the clip plays natively).
-    cx.timer.every(1000, (cx) => {
-      if (this.tick(Date.now())) cx.notify();
-    });
+    this.wander = new Map();
+    this.pendingAt = null;
+    // Deadlines only: redraw when a sip starts/ends or a walk reaches a corner, never per
+    // frame. Clips and movement between waypoints are native (WebP, .transition).
+    cx.timer.every(1000, (cx) => this.onTimer(cx));
   }
 
-  /** Advance every present agent's coffee state; true when anything visible changed. */
+  onTimer(cx) {
+    const now = Date.now();
+    if (this.tick(now)) cx.notify();
+    // Walk legs rarely end on a whole second: wake up exactly at the next corner or visit end.
+    const due = [...this.wander.values()].map((s) => nextEventAt(s, now)).filter((t) => t !== null);
+    const soonest = due.length ? Math.min(...due) : null;
+    if (soonest !== null && soonest - now < 1000 && this.pendingAt !== soonest) {
+      this.pendingAt = soonest;
+      cx.timer.after(Math.max(0, soonest - now), (cx) => {
+        this.pendingAt = null;
+        if (this.tick(Date.now())) cx.notify();
+      });
+    }
+  }
+
+  /** Advance coffee and wander state for every present agent; true when anything visible changed. */
   tick(now) {
     let changed = false;
-    const next = new Map();
-    for (const a of this.present()) {
+    const list = this.present();
+    const coffee = new Map();
+    for (const a of list) {
       const prev = this.coffee.get(a.address);
       const s = stepCoffee(prev, { status: a.status, now, rng: Math.random });
       if (s.sipping !== (prev?.sipping ?? false)) changed = true;
-      next.set(a.address, s);
+      coffee.set(a.address, s);
     }
-    this.coffee = next;
+    this.coffee = coffee;
+    const actors = [];
+    for (const a of list) {
+      const slot = this.slots.get(a.address);
+      if (slot === undefined) continue;
+      actors.push({ address: a.address, slot, status: a.status, canWander: canWander(characterForSlot(slot)),
+        sipping: coffee.get(a.address).sipping });
+    }
+    const wander = stepWander(this.wander, { actors, now, rng: Math.random, layout: this.layout() });
+    for (const [address, s] of wander)
+      if (visibleKey(s, now) !== visibleKey(this.wander.get(address), now)) changed = true;
+    this.wander = wander;
     return changed;
+  }
+
+  layout() {
+    const desks = this.slots.size ? Math.max(...this.slots.values()) + 1 : 0;
+    return computeLayout({ width: this.width, stations: desks, scale: SCALE });
   }
 
   // An `address` prop pins one agent (testing); otherwise every agent of the focused space.
@@ -65,13 +100,16 @@ export default class OfficeWorld extends View {
       const slot = this.slots.get(a.address);
       if (slot === undefined) continue;
       // Terminal titles say what the agent is doing; tab names are often just "1".
+      // A non-idle status wins over any acting state in this same render: no pose, no sip.
+      const pose = a.status === "idle" ? poseOf(this.wander.get(a.address), Date.now()) : null;
       actors[slot] = {
         address: a.address, status: a.status, label: a.title || a.app || a.address,
-        character: characterForSlot(slot), sipping: this.coffee.get(a.address)?.sipping ?? false,
+        character: characterForSlot(slot), pose,
+        sipping: !pose && (this.coffee.get(a.address)?.sipping ?? false),
       };
     }
-    const desks = this.slots.size ? Math.max(...this.slots.values()) + 1 : 0;
-    const layout = computeLayout({ width: this.width, stations: desks, scale: SCALE });
+    const layout = this.layout();
+    const desks = layout.stations.length;
 
     return v_flex().id("root").size_full().bg(t.canvas).overflow_y_scrollbar()
       .on_size_change((size, cx) => {

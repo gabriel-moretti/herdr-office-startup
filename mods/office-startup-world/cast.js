@@ -5,8 +5,9 @@ import { ASSET_ROOT } from "./paths.js";
 // Seated (north) clips each character ships today. Tom comes from the 2026-11-11 designer
 // batch; Nico is still the starter art until the designer's desk sheet is redone.
 export const CAST = {
-  tom: { clips: ["coding", "blocked", "done", "idle", "coffee-sip-seated"] },
-  nico: { clips: ["coding", "blocked", "waiting", "done", "idle", "unknown", "coffee-sip-seated"] },
+  // wander: has walk and stand-idle in all four directions plus the standing coffee sip.
+  tom: { clips: ["coding", "blocked", "done", "idle", "coffee-sip-seated"], wander: false },
+  nico: { clips: ["coding", "blocked", "waiting", "done", "idle", "unknown", "coffee-sip-seated"], wander: true },
 };
 export const SEATED_CAST = ["tom", "nico"];
 
@@ -30,4 +31,12 @@ export function actorImage(character, clip) {
     return clip === "unknown" ? { path: `${base}unknown-still.png`, animated: false } : { path: `${base}${clip}.webp`, animated: true };
   }
   return { path: `${base}idle-still.png`, animated: false };
+}
+
+export const canWander = (character) => CAST[character]?.wander === true;
+
+/** Image for a standing pose from wander.poseOf: walk loops, stand-idle still, standing sip. */
+export function standingImage(character, { direction, clip }) {
+  const base = `${ASSET_ROOT}characters/${character}/${direction}-${clip}`;
+  return clip === "stand-idle" ? `${base}-still.png` : `${base}.webp`;
 }
