@@ -9,6 +9,8 @@ import hashlib
 import json
 import math
 
+import webp_whole_frames  # sibling module; script dir is on sys.path
+
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'assets'
 SRC = ROOT / 'art/source'
@@ -115,9 +117,8 @@ def export_clip(name, source, direction, frames, durations, loop):
                       'rect':[(i%8)*48,(i//8)*48,48,48],'durationMs':durations[i]} for i in range(len(frames))],
            'status':'starter-placeholder','manualCleanupRequired':True}
     if len(frames)>1:
-        # Pillow merges identical consecutive frames: manifest slots remain the source truth.
-        frames[0].save(folder/f'{filebase}.webp',save_all=True,append_images=frames[1:],
-                       duration=durations,loop=0 if loop else 1,lossless=True,quality=100,method=6)
+        # Herdr drops partial/blended WebP frames, so write whole-frame keyframes (see webp_whole_frames.py).
+        (folder/f'{filebase}.webp').write_bytes(webp_whole_frames.encode(frames,durations,0 if loop else 1))
         gifframes=[]
         for frame in frames:
             rgb=frame.convert('RGB').quantize(colors=255,dither=Image.Dither.NONE)
