@@ -7,7 +7,10 @@ import { ASSET_ROOT } from "./paths.js";
 export const CAST = {
   // wander: has walk and stand-idle in all four directions plus the standing coffee sip.
   tom: { clips: ["coding", "blocked", "done", "idle", "coffee-sip-seated"], wander: false },
-  nico: { clips: ["coding", "blocked", "waiting", "done", "idle", "unknown", "coffee-sip-seated"], wander: true },
+  // Nico walks and stands with the designer's frames (nico-v2); the starter set covers the
+  // desk clips and the standing sip until the batch's Nico desk and coffee sheets are redone.
+  nico: { clips: ["coding", "blocked", "waiting", "done", "idle", "unknown", "coffee-sip-seated"], wander: true,
+    standing: { walk: "nico-v2", "stand-idle": "nico-v2" } },
 };
 export const SEATED_CAST = ["tom", "nico"];
 
@@ -37,6 +40,7 @@ export const canWander = (character) => CAST[character]?.wander === true;
 
 /** Image for a standing pose from wander.poseOf: walk loops, stand-idle still, standing sip. */
 export function standingImage(character, { direction, clip }) {
-  const base = `${ASSET_ROOT}characters/${character}/${direction}-${clip}`;
+  const source = CAST[character]?.standing?.[clip] ?? character;
+  const base = `${ASSET_ROOT}characters/${source}/${direction}-${clip}`;
   return clip === "stand-idle" ? `${base}-still.png` : `${base}.webp`;
 }

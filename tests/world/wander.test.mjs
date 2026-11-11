@@ -136,3 +136,14 @@ test("agents that left are dropped and the input map is not mutated", () => {
   assert.deepEqual([...m2.keys()], ["a"]);
   assert.deepEqual([...m].map(([k, v]) => [k, { ...v }]), [...copy]);
 });
+
+test("a dev layout can shorten the idle threshold; strictness still holds", () => {
+  const a = [actor("t1", 0)];
+  const standard = tickRange(new Map(), () => a, 0, 21000).get("t1");
+  let map = new Map();
+  for (let now = 0; now <= 20000; now += 1000) map = stepWander(map, { actors: a, now, rng: rng0, layout, idleMs: 20000 });
+  assert.equal(map.get("t1").phase, "seated");
+  map = stepWander(map, { actors: a, now: 20001, rng: rng0, layout, idleMs: 20000 });
+  assert.equal(map.get("t1").phase, "walk");
+  assert.equal(standard.phase, "seated", "default threshold is untouched");
+});

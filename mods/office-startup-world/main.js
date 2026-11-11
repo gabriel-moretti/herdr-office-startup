@@ -13,13 +13,17 @@ import { selectAgent } from "./select.js";
 import { assignSlots } from "./slots.js";
 import { characterForSlot, canWander } from "./cast.js";
 import { stepCoffee } from "./coffee.js";
-import { stepWander, poseOf, nextEventAt, visibleKey } from "./wander.js";
+import { stepWander, poseOf, nextEventAt, visibleKey, IDLE_MS } from "./wander.js";
 
 // Integer sprite scale. image() smooths and the app zoom applies; 2 keeps the 48 px cast readable
 // in a 360 px panel (one desk per row). Revisit once art is pre-scaled.
 const SCALE = 2;
 const PRESET = "nordic-day";
 const MAX_DESKS = 8;
+
+// Only layouts/office-startup-dev.json sets `dev`: a short idle threshold and a visible
+// diagnostics strip. A test keeps every other layout from setting it.
+const devProps = () => (props()?.dev === true ? { idleMs: props().idleMs ?? 20000 } : null);
 
 export default class OfficeWorld extends View {
   init(props, cx) {
@@ -35,7 +39,8 @@ export default class OfficeWorld extends View {
 
   onTimer(cx) {
     const now = Date.now();
-    if (this.tick(now)) cx.notify();
+    // Dev mode redraws every second so its idle counter is live; the product never does.
+    if (this.tick(now) || devProps()) cx.notify();
     // Walk legs rarely end on a whole second: wake up exactly at the next corner or visit end.
     const due = [...this.wander.values()].map((s) => nextEventAt(s, now)).filter((t) => t !== null);
     const soonest = due.length ? Math.min(...due) : null;
@@ -67,7 +72,8 @@ export default class OfficeWorld extends View {
       actors.push({ address: a.address, slot, status: a.status, canWander: canWander(characterForSlot(slot)),
         sipping: coffee.get(a.address).sipping });
     }
-    const wander = stepWander(this.wander, { actors, now, rng: Math.random, layout: this.layout() });
+    const idleMs = devProps()?.idleMs ?? IDLE_MS;
+    const wander = stepWander(this.wander, { actors, now, rng: Math.random, layout: this.layout(), idleMs });
     for (const [address, s] of wander)
       if (visibleKey(s, now) !== visibleKey(this.wander.get(address), now)) changed = true;
     this.wander = wander;
@@ -123,8 +129,24 @@ export default class OfficeWorld extends View {
         theme: t,
         onFocus: (address) => run("pane.focus", { terminal: address }),
       }))
+      .when(!!devProps(), (el) => el.child(this.diagnostics(list, t)))
       .when(!desks, (el) => el.child(div().p(8).text_size(11).text_color(t.muted).child("No agent in this space")))
       .when(list.length > MAX_DESKS, (el) => el.child(div().p(8).text_size(11).text_color(t.muted)
         .child(`${list.length - MAX_DESKS} more agents not shown`)));
+  }
+
+  /** Dev layout only: phase and observed idle time per agent, to see why someone stays put. */
+  diagnostics(list, t) {
+    const now = Date.now();
+    const rows = list.map((a) => {
+      const w = this.wander.get(a.address);
+      const idle = w?.idleSince != null ? `${Math.floor((now - w.idleSince) / 1000)}s` : "-";
+      const cool = w?.cooldownUntil > now ? ` cooldown ${Math.ceil((w.cooldownUntil - now) / 1000)}s` : "";
+      const char = characterForSlot(this.slots.get(a.address) ?? 0);
+      return `${a.address} ${char} ${a.status} · ${w?.phase ?? "-"}${w?.dest ? ` → ${w.dest}` : ""} · idle ${idle}${cool}${canWander(char) ? "" : " · no walk art"}`;
+    });
+    return v_flex().p(6).gap(2).bg(t.popover).text_size(10).text_color(t.foreground)
+      .child(div().text_color(t.blocked).child(`DEV CLOCK: walks after ${devProps().idleMs / 1000}s idle (product: 300s)`))
+      .children(rows.map((r) => div().child(r)));
   }
 }

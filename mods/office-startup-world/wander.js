@@ -33,10 +33,11 @@ function advance(s, now) {
 /**
  * @param {Map<string, object>} previous
  * @param {{ actors: { address: string, slot: number, status?: string, canWander: boolean, sipping: boolean }[],
- *           now: number, rng: () => number, layout: object }} input
+ *           now: number, rng: () => number, layout: object, idleMs?: number }} input
+ *   idleMs: only a dev layout shortens it; the product threshold is IDLE_MS.
  * @returns {Map<string, object>}
  */
-export function stepWander(previous, { actors, now, rng, layout }) {
+export function stepWander(previous, { actors, now, rng, layout, idleMs = IDLE_MS }) {
   const key = layoutKey(layout);
   const next = new Map();
   for (const a of actors) {
@@ -76,7 +77,7 @@ export function stepWander(previous, { actors, now, rng, layout }) {
     const s = next.get(a.address);
     if (count >= MAX_WANDERERS) break;
     if (s.phase !== "seated" || a.status !== "idle" || !a.canWander || a.sipping) continue;
-    if (s.idleSince === null || now - s.idleSince <= IDLE_MS || now < s.cooldownUntil) continue;
+    if (s.idleSince === null || now - s.idleSince <= idleMs || now < s.cooldownUntil) continue;
     const free = Object.keys(layout.destinations).sort().filter((d) => !taken.has(d));
     if (!free.length) break;
     const dest = free[Math.floor(rng() * free.length)];

@@ -64,3 +64,10 @@ test("only characters with full walk and stand art can wander, and all their ima
   assert.match(standingImage("nico", { direction: "south", clip: "coffee-sip-standing" }), /south-coffee-sip-standing\.webp$/);
   assert.ok(existsSync(join(root, standingImage("nico", { direction: "south", clip: "coffee-sip-standing" }))));
 });
+
+test("Nico walks and stands with the designer's art; the starter only covers what the batch lacks", () => {
+  assert.match(standingImage("nico", { direction: "east", clip: "walk" }), /characters\/nico-v2\/east-walk\.webp$/);
+  assert.match(standingImage("nico", { direction: "north", clip: "stand-idle" }), /characters\/nico-v2\/north-stand-idle-still\.png$/);
+  // The batch's Nico coffee sheet has a table drawn in; the starter's standing sip stays.
+  assert.match(standingImage("nico", { direction: "south", clip: "coffee-sip-standing" }), /characters\/nico\/south-coffee-sip-standing\.webp$/);
+});
