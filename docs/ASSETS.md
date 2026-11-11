@@ -16,6 +16,7 @@ Planning total: **346 authored images/cells** = 260 + 16 + 48 + 22. This is not 
 - **48 tiles 16×16** (16 per preset) and **9 prop types**, exported in 3 palettes (**27 files**). The 9 types are desk, chair, monitor, keyboard, coffee-counter, coffee-machine, plant, sofa, window. 13 prop types from the final budget are missing.
 - No portraits; Lia/Maya/Tom not produced. Do not inflate the count with concepts or layouts.
 - Five main PNG concept images copied into `art/concept`; rejected turnaround source is retained only as provenance, not a usable full turnaround.
+- **Status icons:** 7 hand-written SVGs in `mods/office-startup-world/icons/status-<state>.svg` for working, blocked, waiting, done, idle, unknown and offline. 16×16 viewBox, single color (`currentColor`) so the host's `svg()` tints them with the theme's status colors; each state has its own shape so it reads without color. Original work, CC BY 4.0 like the rest of the art. Checked by `tests/world/status-icons.test.mjs`; legibility reviewed at 16 px on light and dark backgrounds, not yet inside Herdr.
 - Inspection previews: [Nico](../assets/previews/nico-contact-sheet.png), [environments](../assets/previews/office-presets.png). Status inventory in [assets/STATUS](../assets/STATUS.md).
 
 ## Technical specifications

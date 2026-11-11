@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "presets": [
+    {
+      "id": "nordic-day",
+      "tiles": 16,
+      "props": [
+        "desk",
+        "chair",
+        "monitor",
+        "keyboard",
+        "coffee-counter",
+        "coffee-machine",
+        "plant",
+        "sofa",
+        "window"
+      ],
+      "status": "procedural-starter",
+      "license": "CC-BY-4.0",
+      "palette": {
+        "floor": "#C9AC85",
+        "line": "#AE8A65",
+        "wall": "#E8E4DA",
+        "wood": "#C99F73",
+        "accent": "#87A28B"
+      }
+    },
+    {
+      "id": "botanical",
+      "tiles": 16,
+      "props": [
+        "desk",
+        "chair",
+        "monitor",
+        "keyboard",
+        "coffee-counter",
+        "coffee-machine",
+        "plant",
+        "sofa",
+        "window"
+      ],
+      "status": "procedural-starter",
+      "license": "CC-BY-4.0",
+      "palette": {
+        "floor": "#B87B63",
+        "line": "#97634F",
+        "wall": "#BED0B3",
+        "wood": "#916A50",
+        "accent": "#557C58"
+      }
+    },
+    {
+      "id": "blue-hour",
+      "tiles": 16,
+      "props": [
+        "desk",
+        "chair",
+        "monitor",
+        "keyboard",
+        "coffee-counter",
+        "coffee-machine",
+        "plant",
+        "sofa",
+        "window"
+      ],
+      "status": "procedural-starter",
+      "license": "CC-BY-4.0",
+      "palette": {
+        "floor": "#455565",
+        "line": "#34404F",
+        "wall": "#697C96",
+        "wood": "#9A8069",
+        "accent": "#9A8BB4"
+      }
+    }
+  ]
+}

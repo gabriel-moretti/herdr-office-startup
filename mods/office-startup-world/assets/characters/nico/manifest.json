@@ -1,0 +1,1180 @@
+{
+  "schemaVersion": 1,
+  "generator": "scripts/assets/build_starter.py",
+  "characterId": "nico",
+  "license": "CC-BY-4.0",
+  "status": "starter-placeholder",
+  "productionApproved": false,
+  "cell": [
+    48,
+    48
+  ],
+  "anchor": [
+    24,
+    40
+  ],
+  "frameSlots": 65,
+  "directionConvention": {
+    "north": "back",
+    "east": "right profile",
+    "south": "front",
+    "west": "left profile"
+  },
+  "limitations": [
+    "procedural gait/attention/done; not hand-drawn animation",
+    "west is mirrored east; independent directional cleanup needed",
+    "source views differ in overhead angle; normalize silhouette manually",
+    "coding source contains small keyboard; remove keyboard into prop for final production",
+    "one-shot timing/restart must be validated in Herdr; repeated frames may be merged by encoders"
+  ],
+  "clips": [
+    {
+      "id": "coding",
+      "sourceState": "working",
+      "direction": "north",
+      "frameCount": 6,
+      "uniqueFrameCount": 4,
+      "durationsMs": [
+        125,
+        125,
+        125,
+        125,
+        125,
+        125
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "atlas": "north-coding-atlas.png",
+      "still": "north-coding-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/coding/north/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 125
+        },
+        {
+          "file": "art/characters/nico/coding/north/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 125
+        },
+        {
+          "file": "art/characters/nico/coding/north/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 125
+        },
+        {
+          "file": "art/characters/nico/coding/north/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 125
+        },
+        {
+          "file": "art/characters/nico/coding/north/frame-04.png",
+          "rect": [
+            192,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 125
+        },
+        {
+          "file": "art/characters/nico/coding/north/frame-05.png",
+          "rect": [
+            240,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 125
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "north-coding.webp",
+      "gif": "north-coding.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "blocked",
+      "sourceState": "blocked",
+      "direction": "north",
+      "frameCount": 4,
+      "uniqueFrameCount": 3,
+      "durationsMs": [
+        200,
+        200,
+        200,
+        200
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "atlas": "north-blocked-atlas.png",
+      "still": "north-blocked-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/blocked/north/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 200
+        },
+        {
+          "file": "art/characters/nico/blocked/north/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 200
+        },
+        {
+          "file": "art/characters/nico/blocked/north/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 200
+        },
+        {
+          "file": "art/characters/nico/blocked/north/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 200
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "north-blocked.webp",
+      "gif": "north-blocked.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "waiting",
+      "sourceState": "blocked",
+      "direction": "north",
+      "frameCount": 4,
+      "uniqueFrameCount": 2,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "atlas": "north-waiting-atlas.png",
+      "still": "north-waiting-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/waiting/north/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/waiting/north/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/waiting/north/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/waiting/north/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "north-waiting.webp",
+      "gif": "north-waiting.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "done",
+      "sourceState": "done",
+      "direction": "north",
+      "frameCount": 6,
+      "uniqueFrameCount": 3,
+      "durationsMs": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        150
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "atlas": "north-done-atlas.png",
+      "still": "north-done-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/done/north/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 150
+        },
+        {
+          "file": "art/characters/nico/done/north/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 150
+        },
+        {
+          "file": "art/characters/nico/done/north/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 150
+        },
+        {
+          "file": "art/characters/nico/done/north/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 150
+        },
+        {
+          "file": "art/characters/nico/done/north/frame-04.png",
+          "rect": [
+            192,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 150
+        },
+        {
+          "file": "art/characters/nico/done/north/frame-05.png",
+          "rect": [
+            240,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 150
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "north-done.webp",
+      "gif": "north-done.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "idle",
+      "sourceState": "idle",
+      "direction": "north",
+      "frameCount": 4,
+      "uniqueFrameCount": 2,
+      "durationsMs": [
+        300,
+        300,
+        300,
+        300
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "atlas": "north-idle-atlas.png",
+      "still": "north-idle-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/idle/north/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 300
+        },
+        {
+          "file": "art/characters/nico/idle/north/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 300
+        },
+        {
+          "file": "art/characters/nico/idle/north/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 300
+        },
+        {
+          "file": "art/characters/nico/idle/north/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 300
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "north-idle.webp",
+      "gif": "north-idle.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "unknown",
+      "sourceState": "unknown",
+      "direction": "north",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "atlas": "north-unknown-atlas.png",
+      "still": "north-unknown-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/unknown/north/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 0
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "coffee-sip-seated",
+      "sourceState": "idle",
+      "direction": "north",
+      "frameCount": 6,
+      "uniqueFrameCount": 3,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        250,
+        250
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "once",
+      "atlas": "north-coffee-sip-seated-atlas.png",
+      "still": "north-coffee-sip-seated-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/coffee-sip-seated/north/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-seated/north/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-seated/north/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-seated/north/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-seated/north/frame-04.png",
+          "rect": [
+            192,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-seated/north/frame-05.png",
+          "rect": [
+            240,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "north-coffee-sip-seated.webp",
+      "gif": "north-coffee-sip-seated.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "coffee-sip-standing",
+      "sourceState": "idle",
+      "direction": "south",
+      "frameCount": 6,
+      "uniqueFrameCount": 3,
+      "durationsMs": [
+        250,
+        250,
+        250,
+        250,
+        250,
+        250
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "once",
+      "atlas": "south-coffee-sip-standing-atlas.png",
+      "still": "south-coffee-sip-standing-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/coffee-sip-standing/south/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-standing/south/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-standing/south/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-standing/south/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-standing/south/frame-04.png",
+          "rect": [
+            192,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        },
+        {
+          "file": "art/characters/nico/coffee-sip-standing/south/frame-05.png",
+          "rect": [
+            240,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 250
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "south-coffee-sip-standing.webp",
+      "gif": "south-coffee-sip-standing.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "north",
+      "frameCount": 6,
+      "uniqueFrameCount": 5,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "atlas": "north-walk-atlas.png",
+      "still": "north-walk-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/walk/north/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/north/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/north/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/north/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/north/frame-04.png",
+          "rect": [
+            192,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/north/frame-05.png",
+          "rect": [
+            240,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "north-walk.webp",
+      "gif": "north-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "north",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "atlas": "north-stand-idle-atlas.png",
+      "still": "north-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/stand-idle/north/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 0
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "east",
+      "frameCount": 6,
+      "uniqueFrameCount": 5,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "atlas": "east-walk-atlas.png",
+      "still": "east-walk-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/walk/east/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/east/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/east/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/east/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/east/frame-04.png",
+          "rect": [
+            192,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/east/frame-05.png",
+          "rect": [
+            240,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "east-walk.webp",
+      "gif": "east-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "east",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "atlas": "east-stand-idle-atlas.png",
+      "still": "east-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/stand-idle/east/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 0
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "south",
+      "frameCount": 6,
+      "uniqueFrameCount": 5,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "atlas": "south-walk-atlas.png",
+      "still": "south-walk-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/walk/south/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/south/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/south/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/south/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/south/frame-04.png",
+          "rect": [
+            192,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/south/frame-05.png",
+          "rect": [
+            240,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "south-walk.webp",
+      "gif": "south-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "south",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "atlas": "south-stand-idle-atlas.png",
+      "still": "south-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/stand-idle/south/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 0
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true
+    },
+    {
+      "id": "walk",
+      "sourceState": "idle",
+      "direction": "west",
+      "frameCount": 6,
+      "uniqueFrameCount": 5,
+      "durationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": true,
+      "playback": "loop",
+      "atlas": "west-walk-atlas.png",
+      "still": "west-walk-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/walk/west/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/west/frame-01.png",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/west/frame-02.png",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/west/frame-03.png",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/west/frame-04.png",
+          "rect": [
+            192,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        },
+        {
+          "file": "art/characters/nico/walk/west/frame-05.png",
+          "rect": [
+            240,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 120
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true,
+      "webp": "west-walk.webp",
+      "gif": "west-walk.gif",
+      "previewNote": "GIF timing rounded to 10ms; validate WebP loop-count interpretation in Herdr"
+    },
+    {
+      "id": "stand-idle",
+      "sourceState": "idle",
+      "direction": "west",
+      "frameCount": 1,
+      "uniqueFrameCount": 1,
+      "durationsMs": [
+        0
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "loop": false,
+      "playback": "still",
+      "atlas": "west-stand-idle-atlas.png",
+      "still": "west-stand-idle-still.png",
+      "frames": [
+        {
+          "file": "art/characters/nico/stand-idle/west/frame-00.png",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "durationMs": 0
+        }
+      ],
+      "status": "starter-placeholder",
+      "manualCleanupRequired": true
+    }
+  ]
+}

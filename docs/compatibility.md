@@ -57,7 +57,7 @@ Consequences for this project: `unknown` is our derivation (a mapped terminal th
 - A copy exists for every place the layout puts it, shown or not. Timers and tasks keep running while hidden.
 - `close(cx)` is optional, best effort, and is not called for a hidden copy or an inactive tab.
 - The first time the app sees a mod folder it docks one copy per `mod.json` into the shown layout; `"place": "none"` docks nowhere. After that, layouts decide.
-- No `setTimeout` / `setInterval`, no top-level `await`. `cx.timer.every(ms, cx => …)` and `cx.spawn(async cx => …)`.
+- No `setTimeout` / `setInterval`, no top-level `await`. `cx.timer.every(ms, cx => …)` (interval measured from the end of the previous call, so a slow handler delays rather than stacks), one-shot `cx.timer.after(ms, cx => …)`, and `cx.spawn(async cx => …)`. `after` fits the idle/coffee deadlines of plan 03 better than polling.
 - `.id("root").on_size_change((size, cx) => …)` reports size.
 
 ### Files, layouts, safety
@@ -79,9 +79,22 @@ Consequences for this project: `unknown` is our derivation (a mapped terminal th
 - A native FPS HUD exists: module `gpui-fps`, `show_fps_monitor()`, with a configurable frame budget.
 - Sharing convention: a shared item is a folder laid out like the app home — a layout has `layouts/<name>.json` and the `mods/<name>/` it needs; a mod has only `mods/<name>/` and maybe a `keys.json` — with one `RECIPE.md` and one `preview.png` at its root. Installing copies the layout file to `layouts/` and each mod folder to `mods/`, leaves the recipe and preview out, and renames on any name clash instead of overwriting. Repo topic `herdr-layout` or `herdr-mod`. A `RECIPE.md` is a brief from which another agent rebuilds the item.
 
+## Observed on the host (milestone 01 spike, 2026-11-11, in progress)
+
+- **No frames while the window is not on screen.** With the Herdr window covered or on another macOS Space, 40 `herdr-app shot` captures over 13 s were byte-identical and showed content several minutes old, although an overlay was open and a 1 s timer was calling `notify()`. `shot` returns the last frame actually drawn. Consequences: native animation only runs when visible (as documented), visual measurements need the window in front, and a timer-driven state change made while hidden is first drawn when the window returns.
+- **Partial WebP frames.** 7 of the 11 starter Nico WebPs (all walks, `blocked`, `waiting`, `south-coffee-sip-standing`) were encoded with sub-rectangle, blended frames after the first (`webpmux -info`). An installed third-party mod documents that Herdr drops those partial regions and writes whole frames instead. The pipeline is being changed to emit full-canvas frames; the on-screen confirmation is still pending.
+- **Smoothing control.** Nothing in `gpui-kit.d.ts` sets image sampling. Installed mods that look crisp pre-scale art to an integer multiple offline and size the element to exactly that.
+- **Mid-flight interruption, as done by an installed mod.** It recomputes the current position in JS from the segment's start time and duration, then sets a new target with a short transition, on an element with a stable `.id`. Our plan 03 follows the same approach.
+- **Animated GIF and WebP play** inside `image()` (Gabriel watched them animate in the spike overlay, including the old partial-frame and the new whole-frame walk WebP side by side). `herdr-app shot` does **not** capture the frame changes of animated images: across 45 captures in 15 s, while the window was drawing (a timer label changed every second and transitions moved), every GIF/WebP showed the same frame. Do not use shots to judge image animation.
+- **`image()` scales with smoothing.** A 21-colour sprite shown at 48/96/144 px rendered with 413/1393/2763 distinct colours. The app's own `zoom` setting (0.9 on this Mac) also applies, so 48 logical px became about 43 physical px on the 1× display: no integer scale is reachable from the mod. Crisp pixel art therefore needs art pre-scaled offline; how much is still to be decided.
+- **`.transition("left", …)` retargets from the current position.** With `{ duration: 4000, easing: "linear" }`, changing the target mid-flight reversed the element from where it was, without a jump, and ran a fresh 4000 ms from there. An element with `.id(...)` and one without behaved identically in a stable tree.
+- **Timer cadence while visible:** `cx.timer.every(1000)` ran with a maximum gap of 1007 ms over the capture.
+- `mod.open {name}` toggles a mod as an overlay sized by its `mod.json` `overlay` field, without switching layouts. Useful for tests that must not disturb the user's layout.
+- `herdr-app check` passes for the static World scene staged at `mods/office-startup-world`; the active layout and `status.errors` were unaffected by staging.
+
 ## Still to be exercised on the host
 
-These need a running mod. The spike at the start of [plan 01](../plans/01-poc-scene.md) answers 1–5; record results here.
+These need a running mod. The milestone 01 spike answered 1 (animation plays; see above), 2 (smoothed, plus app zoom) and 3 (retargets from the current position). Still open from the spike: 4 (timers while hidden, minimized, across sleep) and 5 (symlinked mod folder).
 
 1. Does `image()` animate GIF and animated WebP? Alpha, loop, per-frame duration, disposal, and what happens when the path changes (restart, cache).
 2. How is an image scaled: is a 48×48 sprite crisp at integer scales on the 1× and the 2× display, or filtered?
