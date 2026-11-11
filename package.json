@@ -1,0 +1,11 @@
+{
+  "name": "herdr-office-startup",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "sync-assets": "node scripts/build/sync_assets.mjs",
+    "stage": "node scripts/build/stage.mjs"
+  }
+}
