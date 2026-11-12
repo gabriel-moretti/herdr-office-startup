@@ -3,7 +3,8 @@
 // the agent's real status and plays natively; idle agents take a coffee sip now and then,
 // and after more than five minutes idle, characters with walk art take a walk.
 // Click desk or actor to focus its terminal. Renders on host data, panel size, or a sip
-// starting/ending.
+// starting/ending. The layout prop `reducedMotion: true` shows status stills only: no clip
+// playback, sip or walk, with labels and focus unchanged.
 import { View, div } from "gpui-kit";
 import { v_flex } from "gpui-base";
 import { agents, focused, props, run, theme } from "herdr";
@@ -14,6 +15,7 @@ import { assignSlots } from "./slots.js";
 import { characterForSlot, canWander } from "./cast.js";
 import { stepCoffee } from "./coffee.js";
 import { stepWander, poseOf, nextEventAt, visibleKey, IDLE_MS } from "./wander.js";
+import { isReducedMotion, actingOf } from "./motion.js";
 
 // Integer sprite scale. image() smooths and the app zoom applies; 2 keeps the 48 px cast readable
 // in a 360 px panel (one desk per row). Revisit once art is pre-scaled.
@@ -55,6 +57,13 @@ export default class OfficeWorld extends View {
 
   /** Advance coffee and wander state for every present agent; true when anything visible changed. */
   tick(now) {
+    // Reduced motion keeps no acting state, so turning it off later starts idle from scratch.
+    if (isReducedMotion(props())) {
+      const had = this.coffee.size > 0 || this.wander.size > 0;
+      this.coffee = new Map();
+      this.wander = new Map();
+      return had;
+    }
     let changed = false;
     const list = this.present();
     const coffee = new Map();
@@ -100,18 +109,21 @@ export default class OfficeWorld extends View {
   render(cx) {
     const t = theme();
     const list = this.present();
+    const reduced = isReducedMotion(props());
     this.slots = assignSlots(this.slots, list.map((a) => a.address), MAX_DESKS);
     const actors = [];
     for (const a of list) {
       const slot = this.slots.get(a.address);
       if (slot === undefined) continue;
       // Terminal titles say what the agent is doing; tab names are often just "1".
-      // A non-idle status wins over any acting state in this same render: no pose, no sip.
-      const pose = a.status === "idle" ? poseOf(this.wander.get(a.address), Date.now()) : null;
+      const acting = actingOf({
+        status: a.status, reduced,
+        pose: poseOf(this.wander.get(a.address), Date.now()),
+        sipping: this.coffee.get(a.address)?.sipping ?? false,
+      });
       actors[slot] = {
         address: a.address, status: a.status, label: a.title || a.app || a.address,
-        character: characterForSlot(slot), pose,
-        sipping: !pose && (this.coffee.get(a.address)?.sipping ?? false),
+        character: characterForSlot(slot), ...acting,
       };
     }
     const layout = this.layout();

@@ -71,3 +71,18 @@ test("Nico walks and stands with the designer's art; the starter only covers wha
   // The batch's Nico coffee sheet has a table drawn in; the starter's standing sip stays.
   assert.match(standingImage("nico", { direction: "south", clip: "coffee-sip-standing" }), /characters\/nico\/south-coffee-sip-standing\.webp$/);
 });
+
+test("reduced motion: every seated character has an existing still for every status", () => {
+  for (const id of SEATED_CAST)
+    for (const status of ["working", "blocked", "done", "idle", undefined]) {
+      const img = actorImage(id, clipFor(status), { still: true });
+      assert.equal(img.animated, false, `${id}/${status}`);
+      assert.match(img.path, /-still\.png$/, `${id}/${status}`);
+      assert.ok(existsSync(join(root, img.path)), `${id}/${status}: ${img.path}`);
+    }
+});
+
+test("reduced motion: a status still is that clip's own still, not the idle one", () => {
+  assert.match(actorImage("tom", "coding", { still: true }).path, /tom\/north-coding-still\.png$/);
+  assert.match(actorImage("nico", "blocked", { still: true }).path, /nico\/north-blocked-still\.png$/);
+});

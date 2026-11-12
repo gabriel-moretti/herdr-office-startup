@@ -14,7 +14,7 @@ export const PALETTES = {
 
 /**
  * @param {ReturnType<import("./layout.js").computeLayout>} layout
- * @param {{ preset: string, actors: ({ address: string, label: string, character: string, status?: string, sipping?: boolean,
+ * @param {{ preset: string, actors: ({ address: string, label: string, character: string, status?: string, sipping?: boolean, still?: boolean,
  *             pose?: { feet: {x: number, y: number}, direction: string, clip: string, durationMs: number } | null } | undefined)[],
  *           theme: Record<string, string>, onFocus: (address: string) => void }} opts
  *   actors[i] sits at layout.stations[i]; a gap leaves that desk empty but furnished.
@@ -49,7 +49,7 @@ export function renderScene(layout, { preset, actors, theme, onFocus }) {
     else {
       // A sip only ever overlays idle; any other status shows its own clip in this same render.
       const clip = a.sipping && a.status === "idle" ? "coffee-sip-seated" : clipFor(a.status);
-      path = actorImage(a.character, clip).path;
+      path = actorImage(a.character, clip, { still: a.still }).path;
     }
     // Same element id seated or walking, so the native transition carries it between targets.
     // Walking legs animate over the leg's duration; anything else (sitting, snapping back) is 0.
