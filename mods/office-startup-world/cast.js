@@ -24,14 +24,15 @@ export const characterForSlot = (slot) => SEATED_CAST[slot % SEATED_CAST.length]
 
 /**
  * The image for a character playing a clip: the animated WebP when the character ships it,
- * otherwise its idle still, so a missing clip never renders a broken path.
+ * otherwise its idle still, so a missing clip never renders a broken path. `still` (reduced
+ * motion) asks for the clip's still instead of its animation.
  * @returns {{ path: string, animated: boolean }}
  */
-export function actorImage(character, clip) {
+export function actorImage(character, clip, { still = false } = {}) {
   const base = `${ASSET_ROOT}characters/${character}/north-`;
   if (CAST[character]?.clips.includes(clip)) {
     // Single-frame clips (unknown) only exist as stills.
-    return clip === "unknown" ? { path: `${base}unknown-still.png`, animated: false } : { path: `${base}${clip}.webp`, animated: true };
+    return clip === "unknown" || still ? { path: `${base}${clip}-still.png`, animated: false } : { path: `${base}${clip}.webp`, animated: true };
   }
   return { path: `${base}idle-still.png`, animated: false };
 }
