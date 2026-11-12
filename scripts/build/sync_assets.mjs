@@ -37,17 +37,24 @@ export function buildPlan(repo = REPO) {
 
   add('LICENSE');
 
-  const charDir = 'characters/nico';
-  add(`${charDir}/manifest.json`);
-  const cm = readJson(join(src, charDir, 'manifest.json'));
-  for (const c of cm.clips) {
-    // atlas entries are intentionally skipped
-    // single-frame clips ship only a still
-    const files = c.frameCount > 1 ? [c.webp, c.gif, c.still] : [c.still];
-    for (const f of files) {
-      if (!f) throw new Error(`clip ${c.id} (${c.direction}) lacks a runtime file`);
-      add(`${charDir}/${f}`);
+  // Every assets/characters/<id>/ that has a manifest ships (clips, portraits); atlases are skipped.
+  const ids = readdirSync(join(src, 'characters'), { withFileTypes: true })
+    .filter((e) => e.isDirectory() && existsSync(join(src, 'characters', e.name, 'manifest.json')))
+    .map((e) => e.name).sort();
+  if (!ids.length) throw new Error('no character manifests under assets/characters');
+  for (const id of ids) {
+    const charDir = `characters/${id}`;
+    add(`${charDir}/manifest.json`);
+    const cm = readJson(join(src, charDir, 'manifest.json'));
+    for (const c of cm.clips) {
+      // single-frame clips ship only a still
+      const files = c.frameCount > 1 ? [c.webp, c.gif, c.still] : [c.still];
+      for (const f of files) {
+        if (!f) throw new Error(`${id}: clip ${c.id} (${c.direction}) lacks a runtime file`);
+        add(`${charDir}/${f}`);
+      }
     }
+    for (const p of cm.portraits ?? []) add(`${charDir}/${p}`);
   }
 
   add('environment/manifest.json');

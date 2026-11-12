@@ -40,6 +40,29 @@ test('every runtime file in the character manifest exists in the synced copy', (
   } finally { t.done(); }
 });
 
+test('every character with a manifest is synced, with its runtime files and portraits', () => {
+  const t = fresh();
+  try {
+    sync({ ...t.opts, ...quiet });
+    const ids = readdirSync(join(root, 'assets/characters'), { withFileTypes: true })
+      .filter((e) => e.isDirectory() && existsSync(join(root, 'assets/characters', e.name, 'manifest.json')))
+      .map((e) => e.name);
+    assert.ok(ids.includes('nico') && ids.includes('tom') && ids.includes('lia'), ids.join());
+    for (const id of ids) {
+      const base = join(t.dest, 'characters', id);
+      const m = JSON.parse(readFileSync(join(base, 'manifest.json'), 'utf8'));
+      assert.equal(m.characterId, id);
+      for (const c of m.clips) {
+        for (const f of c.frameCount > 1 ? [c.webp, c.gif, c.still] : [c.still]) {
+          assert.ok(f && existsSync(join(base, f)), `${id}: ${f} missing`);
+        }
+      }
+      for (const p of m.portraits ?? []) assert.ok(existsSync(join(base, p)), `${id}: ${p} missing`);
+    }
+    assert.ok((JSON.parse(readFileSync(join(t.dest, 'characters/tom/manifest.json'), 'utf8')).portraits).length > 0);
+  } finally { t.done(); }
+});
+
 test('no atlas, preview or doc files are copied; art LICENSE is', () => {
   const t = fresh();
   try {

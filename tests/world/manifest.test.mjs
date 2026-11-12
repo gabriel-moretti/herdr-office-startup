@@ -48,3 +48,12 @@ test('world mod manifest and asset paths', () => {
     for (const a of assets) assert.ok(existsSync(join(root, a)), `${f}: referenced asset missing: ${a}`);
   }
 });
+
+test('only the dev layout turns on the dev clock', () => {
+  const dir = join(root, 'layouts');
+  const files = readdirSync(dir).filter((f) => f.endsWith('.json'));
+  for (const f of files) {
+    const devOn = /"dev"\s*:\s*true/.test(readFileSync(join(dir, f), 'utf8'));
+    assert.equal(devOn, f === 'office-startup-dev.json', `${f}: dev prop ${devOn ? 'set' : 'missing'}`);
+  }
+});
