@@ -61,6 +61,21 @@ export function buildPlan(repo = REPO) {
   return plan;
 }
 
+const lstatOrNull = (p) => { try { return lstatSync(p); } catch { return null; } };
+
+/** Throw if rel escapes dest or any existing component of it (directories and the file) is a symlink. */
+function assertSafeOut(dest, rel) {
+  const parts = rel.split('/');
+  if (parts.some((p) => p === '' || p === '.' || p === '..')) throw new Error(`refusing path outside the destination: ${rel}`);
+  let cur = dest;
+  for (const part of parts) {
+    cur = join(cur, part);
+    const st = lstatOrNull(cur);
+    if (!st) break;
+    if (st.isSymbolicLink()) throw new Error(`refusing symlinked destination: ${cur}`);
+  }
+}
+
 function listFiles(dir, base = dir) {
   if (!existsSync(dir)) return [];
   return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
@@ -89,6 +104,8 @@ export function sync({ dest = DEFAULT_DEST, allowedRoot = DEFAULT_DEST, check = 
   if (real(d) === resolve(repo) || real(d) === sep) throw new Error(`destination ${d} is outside any asset folder`);
 
   const plan = buildPlan(repo);
+  // Validate every output path before writing anything, so a bad link aborts with no partial copy.
+  for (const rel of plan.keys()) assertSafeOut(d, rel);
   const copied = [];
   let unchanged = 0, bytes = 0;
   for (const [rel, abs] of plan) {

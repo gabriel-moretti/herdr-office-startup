@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtempSync, readFileSync, writeFileSync, readdirSync, statSync, existsSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, readdirSync, statSync, existsSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -116,4 +116,33 @@ test('refuses a destination outside the allowed root', () => {
     assert.throws(() => sync({ dest: join(t.dest, '..'), allowedRoot: t.dest, ...quiet }), /outside/);
     assert.ok(DEFAULT_DEST.endsWith(join('mods', 'office-startup-world', 'assets')));
   } finally { t.done(); }
+});
+
+test('refuses a symlinked directory or file inside the destination and writes nothing through it', () => {
+  const t = fresh();
+  const outside = mkdtempSync(join(tmpdir(), 'ous-outside-'));
+  try {
+    sync({ ...t.opts, ...quiet });
+    const victim = join(outside, 'manifest.json');
+    writeFileSync(victim, 'keep');
+
+    // intermediate directory is a link out of the destination
+    rmSync(join(t.dest, 'characters'), { recursive: true });
+    symlinkSync(outside, join(t.dest, 'characters'));
+    mkdirSync(join(outside, 'nico'));
+    symlinkSync(victim, join(outside, 'nico', 'manifest.json'));
+    assert.throws(() => sync({ ...t.opts, ...quiet }), /symlink/);
+    assert.throws(() => sync({ ...t.opts, check: true, ...quiet }), /symlink/);
+    assert.equal(readFileSync(victim, 'utf8'), 'keep');
+    assert.deepEqual(readdirSync(outside).sort(), ['manifest.json', 'nico']);
+
+    // the final file itself is a link out of the destination
+    rmSync(join(t.dest, 'characters'));
+    sync({ ...t.opts, ...quiet });
+    const out = join(t.dest, 'characters/nico/manifest.json');
+    rmSync(out);
+    symlinkSync(victim, out);
+    assert.throws(() => sync({ ...t.opts, ...quiet }), /symlink/);
+    assert.equal(readFileSync(victim, 'utf8'), 'keep');
+  } finally { t.done(); rmSync(outside, { recursive: true, force: true }); }
 });
