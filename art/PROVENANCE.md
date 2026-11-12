@@ -22,6 +22,12 @@ Action prompt requested: same Nico in every cell, two rows of four north-facing 
 
 East prompt requested: one isolated original Nico right-facing profile, same clothing/headset, overhead RPG camera, whole body, uniform magenta, no chair/desk/other character. Only correct east source used. Runtime placeholders also contain procedural derivatives; they are explicitly not fully AI-generated frame-by-frame animation.
 
+## 2026-11-11 designer batch (GenerateImage, 69 outputs, 39 selected)
+
+Requested by Gabriel with the STYLE block and per-sheet templates recorded verbatim in `generated/raw/MANIFEST.md`, which also lists every selected and rejected output with its SHA-256 and a per-file quality note. `generated/originals/` holds the selected JPEG bytes, `generated/rejected/` the other attempts, `generated/raw/` lossless PNG conversions without any edit. Transfer integrity: `generated/TRANSFER-CHECKSUMS.sha256` verified on the Mac (115 files OK). The same rights caveats as the sources above apply: AI-generated concepts, no guarantee of originality, copyrightability or exclusivity; review service terms before release.
+
+Frames normalized from the sheets that passed review are staged in [`import/`](import/README.md), with the exact importer commands and cell choices. They are not production-approved.
+
 ## Release checklist
 
 Review service terms, source rights, visual similarity, alpha/halo, temporal continuity, directional silhouette, independent west cleanup and props separation. Record manual editor/author/date and exact modifications on future additions. Never assert exclusivity/copyright where absent. No public screenshot should expose terminal content.

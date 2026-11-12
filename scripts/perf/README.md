@@ -14,6 +14,14 @@ Defaults follow the protocol: 60 s warm-up, 300 s of sampling, one sample every 
 
 Useful options: `--name herdr-core` (repeatable, to add the core processes), `--pid`, `--warmup`, `--duration`, `--interval`. For the memory gate use `--duration 600`.
 
+## Several layouts in one go
+
+```sh
+scripts/perf/run_layouts.sh 01-baseline main office-startup-poc
+```
+
+Switches to each layout, takes three runs (`RUNS=` to change), appends everything to `local/perf/<tag>.csv` and switches back to the first layout. Six runs take about 36 minutes.
+
 ## Protocol reminders
 
 - Three runs per scenario, same window size, display, power state and layout; terminals quiet. Do not measure while an agent is working in the same app: on 2026-11-11 the app alone showed about 20 pp with an agent active in the `pixel-hq` layout.

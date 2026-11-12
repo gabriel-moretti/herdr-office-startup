@@ -19,8 +19,8 @@ Update this table in the PR that closes each milestone. A milestone is "accepted
 | Milestone | Status | PR | Accepted (date, BRT) | Evidence |
 |---|---|---|---|---|
 | 00 bootstrap | in review (2026-11-11), branch `phase/00-bootstrap`, no PR yet | | | validators pass; compatibility hashes match; secrets scan clean |
-| 01 PoC scene — part 0 spike | not started | | | |
-| 01 PoC scene — part 1 scene and tooling | not started | | | |
+| 01 PoC scene — part 0 spike | done (2026-11-11), awaiting review | | | docs/compatibility.md "Observed on the host" |
+| 01 PoC scene — part 1 scene and tooling | in progress: scene, tests, staging, focus and resize verified on the Mac; perf baseline pending | | | npm test 67/67; herdr-app check pass |
 | 02 states | not started | | | |
 | 03 idle/coffee/wander — part A logic | not started | | | |
 | 03 idle/coffee/wander — part B Mac gate | not started | | | |
