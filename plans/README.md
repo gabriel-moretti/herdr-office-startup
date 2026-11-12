@@ -18,11 +18,11 @@ Update this table in the PR that closes each milestone. A milestone is "accepted
 
 | Milestone | Status | PR | Accepted (date, BRT) | Evidence |
 |---|---|---|---|---|
-| 00 bootstrap | in review (2026-11-11), branch `phase/00-bootstrap`, no PR yet | | | validators pass; compatibility hashes match; secrets scan clean |
-| 01 PoC scene — part 0 spike | done (2026-11-11), awaiting review | | | docs/compatibility.md "Observed on the host" |
-| 01 PoC scene — part 1 scene and tooling | in progress: scene, tests, staging, focus and resize verified on the Mac; perf baseline pending | | | npm test 67/67; herdr-app check pass |
-| 02 states | not started | | | |
-| 03 idle/coffee/wander — part A logic | not started | | | |
+| 00 bootstrap | accepted; became `main` | — | 2026-11-12 | validators pass; compatibility hashes match; secrets scan clean |
+| 01 PoC scene — part 0 spike | accepted | [#1](https://github.com/gabriel-moretti/herdr-office-startup/pull/1) | 2026-11-12 | docs/compatibility.md "Observed on the host" |
+| 01 PoC scene — part 1 scene and tooling | accepted; perf baseline sampled (`local/perf/01-baseline.csv`) but not yet summarized in `docs/performance.md` | [#1](https://github.com/gabriel-moretti/herdr-office-startup/pull/1) | 2026-11-12 | npm test 68/68; herdr-app check pass; focus and resize on the Mac |
+| 02 states | accepted except item 4 (`reducedMotion` prop), carried into 03 A7 | [#2](https://github.com/gabriel-moretti/herdr-office-startup/pull/2) | 2026-11-12 | npm test 137/137; real status clips on the Mac with two Claude sessions |
+| 03 idle/coffee/wander — part A logic | merged early in #2 (coffee, wander, dev clock); A7 `reducedMotion` in progress | [#2](https://github.com/gabriel-moretti/herdr-office-startup/pull/2) | | walk verified with the 20 s dev clock only |
 | 03 idle/coffee/wander — part B Mac gate | not started | | | |
 | 04 presets — part A code | not started | | | |
 | 04 presets — part B art batch | not started | | | |
